@@ -1,14 +1,19 @@
-package Login_Sys;
 
+
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -38,6 +43,11 @@ public class MainPanel extends JPanel {
 		txtUser.setPreferredSize(new Dimension(200,25));
 		add(txtUser,gbc); 
 		
+		JLabel lblStatus = new JLabel("");
+		gbc.gridx=0;
+		gbc.gridy=3;
+		add(lblStatus,gbc);
+		
 		JPasswordField passwordField = new JPasswordField(20);
 		gbc.gridx=1;
 		gbc.gridy=1;
@@ -45,19 +55,37 @@ public class MainPanel extends JPanel {
 		passwordField.setPreferredSize(new Dimension(200,25));
 		add(passwordField,gbc);
 		
-		JButton btnAdd = new JButton("Add");
+		JButton btnExit= new JButton("Exit");
 		gbc.gridx=0;
 		gbc.gridy=2;
 		gbc.insets = new Insets(10,0,0,0);
-		btnAdd.setPreferredSize(new Dimension(100,25));
-		add(btnAdd,gbc);
+		btnExit.setPreferredSize(new Dimension(100,25));
+		add(btnExit,gbc);
 		
-		JButton btnLogin = new JButton("Login");
-		gbc.gridx=1;
-		gbc.gridy=2;
-		btnLogin.setPreferredSize(new Dimension(100,25));
-		add(btnLogin,gbc);
-		
+//		JButton btnLogin = new JButton("Login");
+//		gbc.gridx=1;
+//		gbc.gridy=2;
+//		btnLogin.setPreferredSize(new Dimension(100,25));
+//		add(btnLogin,gbc);
+//		btnLogin.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				char[] input = passwordField.getPassword();
+//				String user = txtUser.getText();			
+//			if(credCheck(input,user))
+//				{
+//					lblStatus.setForeground(Color.GREEN);
+//					lblStatus.setText("Correct!");
+//				}
+//			else if(!credCheck(input,user))
+//				{
+//					lblStatus.setForeground(Color.RED);
+//					lblStatus.setText("Incorrect");
+//				}
+//			}
+//		});
+				
 		JButton btnClear = new JButton("Clear");
 		gbc.gridx=2;
 		gbc.gridy=2;
@@ -74,14 +102,27 @@ public class MainPanel extends JPanel {
 			
 		});
 		
-		
-		
-		
-		
-		JLabel lblStatus = new JLabel("");
-		gbc.gridx=0;
-		gbc.gridy=3;
-		add(lblStatus,gbc);
-		
+		btnExit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);						
+			}
+		});		
+	
 	}
+
+
+private boolean credCheck(char[] input,String user)
+{
+	String username = "TEST";
+	boolean isCorrect = true;
+	char[] password = {'p','a','s','s'};
+	if(!(input.length==password.length))
+		isCorrect=false;
+	isCorrect = Arrays.equals(input,password);
+	return isCorrect = user.equals(username);
+}
+
+
 }
